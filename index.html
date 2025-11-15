@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz Time — Bubbles</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- BUBBLES CANVAS (background animation) -->
+  <canvas id="bubblesCanvas" class="bg-canvas"></canvas>
+
+  <!-- CONFETTI CANVAS (top) -->
+  <canvas id="confettiCanvas" class="bg-canvas top-canvas"></canvas>
+
+  <!-- AUDIO (src set by JS) -->
+  <audio id="bgMusic" loop></audio>
+  <audio id="correctSound"></audio>
+  <audio id="wrongSound"></audio>
+  <audio id="celebrateSound"></audio>
+
+  <div class="app">
+
+    <!-- WELCOME -->
+    <section id="welcome" class="screen active card">
+      <h1 class="title">⏳✨ Quiz Time</h1>
+      <p class="subtitle">Enter your name & choose a topic to start</p>
+
+      <input id="playerName" placeholder="Your name (e.g. Vani)" />
+
+      <div class="topic-row" id="topicRow">
+        <button class="topic selected" data-topic="Java">Java</button>
+        <button class="topic" data-topic="Python">Python</button>
+        <button class="topic" data-topic="HTML/CSS">HTML/CSS</button>
+      </div>
+
+      <div class="controls-row">
+        <label class="small">
+          <input id="darkSwitch" type="checkbox" /> Dark theme
+        </label>
+        <button id="startBtn" class="btn primary big">Start Quiz ▶</button>
+      </div>
+
+      <p class="hint">Tip: Sounds will play after you click Start.</p>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="screen card">
+      <header class="quiz-head">
+        <div>
+          <div id="greeting">Hi!</div>
+          <div class="meta"> <span id="qCounter">1/10</span> • <span id="scoreLabel">Score: 0</span></div>
+        </div>
+
+        <div class="mini-controls">
+          <div class="music">
+            <button id="musicBtn" class="icon">🔈</button>
+            <input id="musicVol" type="range" min="0" max="1" step="0.01" value="0.35" />
+          </div>
+          <div class="timer">⏱ <span id="timer">15</span>s</div>
+        </div>
+      </header>
+
+      <div class="progressWrap">
+        <div id="progressBar" class="progressBar">
+          <div id="progressFill" class="progressFill"></div>
+        </div>
+      </div>
+
+      <main class="quiz-main">
+        <div id="questionArea" class="questionArea">
+          <div id="questionText" class="questionText">Question will appear here</div>
+          <div id="answerFeedback" class="answerFeedback"></div>
+        </div>
+
+        <div id="optionsGrid" class="optionsGrid"></div>
+
+        <div class="controls-row center">
+          <button id="nextBtn" class="btn primary" aria-hidden="true">Next ➜</button>
+          <button id="quitBtn" class="btn ghost">Quit</button>
+        </div>
+      </main>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" class="screen card">
+      <h2>🎉 Quiz Completed!</h2>
+      <div class="badge">🏅</div>
+      <h3 id="finalMsg"></h3>
+      <p id="finalScore" class="finalScore"></p>
+      <div class="controls-row center">
+        <button id="playAgainBtn" class="btn vibrant large">Play Again 🔄</button>
+        <button id="viewBoardBtn" class="btn">Leaderboard</button>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <aside id="leaderboard" class="leaderboard card">
+      <h3>🏆 Leaderboard</h3>
+      <ol id="leaderList"></ol>
+      <div class="controls-row">
+        <button id="clearBoard" class="btn ghost">Clear</button>
+        <button id="closeBoard" class="btn">Close</button>
+      </div>
+    </aside>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
